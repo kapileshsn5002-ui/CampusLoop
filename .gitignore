@@ -9,6 +9,12 @@ build/
 # Environment and IDE
 .env
 .env.local
+.env.production
+.env.production.local
 .vscode/
 .idea/
 *.log
+
+# OS files
+.DS_Store
+Thumbs.db
