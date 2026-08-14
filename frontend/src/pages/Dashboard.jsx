@@ -15,6 +15,8 @@ import {
   Sparkles,
   ArrowUpRight
 } from "lucide-react";
+import { API_BASE_URL } from "../config";
+
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -31,12 +33,12 @@ function Dashboard() {
     if (!user?.id) return;
     try {
       setLoading(true);
-      const res = await fetch(`/api/leaves/employee/${user.id}`);
+      const res = await fetch(`${API_BASE_URL}/api/leaves/employee/${user.id}`);
       if (res.ok) {
         const data = await res.json();
         setLeaves(data);
       } else {
-        const resAll = await fetch("/api/leaves");
+        const resAll = await fetch(`${API_BASE_URL}/api/leaves`);
         if (resAll.ok) {
           const allData = await resAll.json();
           const filtered = allData.filter(

@@ -1,4 +1,6 @@
 import { createContext, useContext, useState } from "react";
+import { API_BASE_URL } from "../config";
+
 
 const AuthContext = createContext(null);
 
@@ -18,7 +20,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password, requestedRole) => {
     setLoading(true);
     try {
-      const res = await fetch("/api/auth/login", {
+      const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password, role: requestedRole }),
@@ -57,7 +59,7 @@ export const AuthProvider = ({ children }) => {
   const refreshUser = async () => {
     if (!user || !user.id) return;
     try {
-      const res = await fetch(`/api/auth/me/${user.id}`);
+      const res = await fetch(`${API_BASE_URL}/api/auth/me/${user.id}`);
       if (res.ok) {
         const updated = await res.json();
         setUser(updated);

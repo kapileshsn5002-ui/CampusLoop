@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Filter, Users, ShieldCheck } from "lucide-react";
+import { API_BASE_URL } from "../config";
+
 
 function TeamCalendar() {
   const [leaves, setLeaves] = useState([]);
@@ -14,7 +16,7 @@ function TeamCalendar() {
   const fetchLeaves = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/leaves");
+      const res = await fetch(`${API_BASE_URL}/api/leaves`);
       if (res.ok) {
         const data = await res.json();
         setLeaves(data);

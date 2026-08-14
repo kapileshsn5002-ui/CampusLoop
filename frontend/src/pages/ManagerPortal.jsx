@@ -12,6 +12,8 @@ import {
   X,
   ShieldCheck
 } from "lucide-react";
+import { API_BASE_URL } from "../config";
+
 
 function ManagerPortal() {
   const { refreshUser } = useAuth();
@@ -31,7 +33,7 @@ function ManagerPortal() {
   const fetchLeaves = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/leaves");
+      const res = await fetch(`${API_BASE_URL}/api/leaves`);
       if (res.ok) {
         const data = await res.json();
         setLeaves(data);
@@ -59,7 +61,7 @@ function ManagerPortal() {
     const { request, action } = activeModal;
     try {
       setProcessing(true);
-      const res = await fetch(`/api/leaves/${request.id}/status`, {
+      const res = await fetch(`${API_BASE_URL}/api/leaves/${request.id}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { CalendarPlus, CheckCircle2, AlertCircle, ArrowLeft, Send, CheckSquare, CalendarDays } from "lucide-react";
+import { API_BASE_URL } from "../config";
+
 
 function ApplyLeave() {
   const navigate = useNavigate();
@@ -76,7 +78,7 @@ function ApplyLeave() {
 
     try {
       setSubmitting(true);
-      const res = await fetch("/api/leaves", {
+      const res = await fetch(`${API_BASE_URL}/api/leaves`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { CalendarDays, CalendarPlus, Search, Filter, CheckCircle2, Clock3, XCircle, FileText, MessageSquare } from "lucide-react";
+import { API_BASE_URL } from "../config";
+
 
 function MyLeaves() {
   const navigate = useNavigate();
@@ -19,12 +21,12 @@ function MyLeaves() {
     if (!user?.id) return;
     try {
       setLoading(true);
-      const res = await fetch(`/api/leaves/employee/${user.id}`);
+      const res = await fetch(`${API_BASE_URL}/api/leaves/employee/${user.id}`);
       if (res.ok) {
         const data = await res.json();
         setLeaves(data);
       } else {
-        const resAll = await fetch("/api/leaves");
+        const resAll = await fetch(`${API_BASE_URL}/api/leaves`);
         if (resAll.ok) {
           const allData = await resAll.json();
           const filtered = allData.filter(
