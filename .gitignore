@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+target/
+
+# Build output
+dist/
+build/
+
+# Environment and IDE
+.env
+.env.local
+.vscode/
+.idea/
+*.log
